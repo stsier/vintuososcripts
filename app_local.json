@@ -1,0 +1,77 @@
+{
+    "minor_version":"1",
+    "app_in_review": false,
+    "expire" : 0,
+	"stats_nid" : 0,
+    "debugTimeOut": 2000,
+    "debugDetailedTimeOut": 5000,
+    "releaseTimeOut": 3000,
+    "expireDeltaMs": 1, 
+    "expireDeltaMsX": 86400000,
+    "DEBUG_MODE_Android": "ERROR",
+    "DEBUG_MODE_iOS": "ERROR",
+    "scripts": ["vintuosoappmin.js",
+				"vintuoso.css"
+    ],
+    "user_reset" : false,
+	"clear_cache" : true,
+    "exclude_users" : ["1", "6", "1458", "2081", "19", "842", "236", "d676d240a5d9bf2a", "18ab6013b8db8d87", "c25e48605fd2d4d4", "70A667E7-01AF-4A13-8757-08014EB9626E", "2F317A74-0DA3-4E95-8636-D262063AA00D",  "-1"],
+    "debug_users" : ["-1","0D07C3E5-94D5-4471-9F4A-10D3D8C9BAA0","8C54D4D4-EA8B-4138-83CE-7A56B4F6EAE8","1", "32", "b3bc2f375b553447", "fde4ed3efed21567", "d676d240a5d9bf2a", "18ab6013b8db8d87", "c25e48605fd2d4d4", "70A667E7-01AF-4A13-8757-08014EB9626E", "2F317A74-0DA3-4E95-8636-D262063AA00D","browser", "636C6879-4C1A-4FC2-B218-04DF9F8CE475", "13C360B9-3091-4197-AAB3-28FC45807B46","0AE3EF82-229C-44C5-9DDB-FFCD2EF4C540","fb6a4240b72ee827"],
+	"global_languages": [
+		{
+			"id": 1,
+			"code": "en",
+			"name": "English",
+			"active": true
+		},
+		{
+			"id": 2,
+			"code": "fr",
+			"name": "Français",
+			"active": true
+		},
+		{
+			"id": 3,
+			"code": "es",
+			"name": "Español",
+			"active": false
+		},
+		{
+			"id": 4,
+			"code": "ru",
+			"name": "Русский",
+			"active": false
+		},
+		{
+			"id": 5,
+			"code": "de",
+			"name": "Deutch",
+			"active": false
+		},
+		{
+			"id": 6,
+			"code": "tr",
+			"name": "Türkçe",
+			"active": false
+		},   
+		{
+			"id": 7,
+			"code": "it",
+			"name": "Italiano",
+			"active": false
+		},
+		{
+			"id": 8,
+			"code": "po",
+			"name": "Polska",
+			"active": false
+		},
+		{
+			"id": 9,
+			"code": "nb",
+			"name": "Norsk",
+			"active": false
+		}
+		
+	]
+}
