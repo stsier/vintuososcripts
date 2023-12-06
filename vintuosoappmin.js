@@ -7401,9 +7401,6 @@ class VMap {
                     mapImage.width = mapImage.height / ratio;
                     mapImage.style.left = (window.outerWidth - mapImage.width) / 2 + "px";
                     document.getElementById("drawing-canvas").style.display = "block";
-                    this.aopTagGoogleMap.setOptions({
-                        gestureHandling: "none"
-                    });
                     var drawer = new SVG("drawing-canvas").size("100%", "100%");
                     console.log(drawer);
                     const getDrawObject = () => {
@@ -7768,15 +7765,53 @@ class VMapEditor extends VAbstractEditor {
             }
         });
         document.getElementById("flash-fab").addEventListener("touchend", () => {
-            this.shapes_index--;
-            this.shapes.pop().remove();
-            this.polygonData.pop();
+            if (this.shapes_index == 0) {
+                this.aopTagGoogleMap.setOptions({
+                    gestureHandling: "none"
+                });
+                document.getElementById("drawing-canvas").style.display = "block";
+                var drawer = new SVG("drawing-canvas").size("100%", "100%");
+                console.log(drawer);
+                const getDrawObject = () => {
+                    const option = {
+                        stroke: "#ff0099",
+                        "stroke-width": 2,
+                        "fill-opacity": .2
+                    };
+                    return drawer.polyline().fill("none").stroke({
+                        stroke: "#ff0099",
+                        width: 1
+                    });
+                };
+                drawer.on("mousedown", event => {
+                    const shape = getDrawObject();
+                    console.log(this.shapes_index);
+                    this.shapes[this.shapes_index] = shape;
+                    shape.draw(event);
+                });
+                drawer.on("mousemove", event => {
+                    if (this.shapes[this.shapes_index]) {
+                        this.shapes[this.shapes_index].draw("point", event);
+                    }
+                });
+                drawer.on("mouseup", event => {
+                    this.shapes[this.shapes_index].draw("stop", event);
+                    this.shapes_index++;
+                });
+            } else {
+                this.shapes_index--;
+                this.shapes.pop().remove();
+                this.polygonData.pop();
+            }
         });
     }
     buildMainHTML() {
         return '<ons-page id="' + this.pageId + '-page" class="page__transparent">' + VPageFactory.buildCancelFab(this.pageId, -10) + '<ons-list modifier="noborder" style="padding: 0; width: 100%; margin-top: 40px; background-color:' + TRANSPARENT + '">' + VPageFactory.buildBottomListItem() + "</ons-list>" + "</ons-page>";
     }
     pictureTaken(imageData) {
+        this.aopTagGoogleMap.setOptions({
+            gestureHandling: "greedy"
+        });
         var mapImage = document.getElementById("map-image");
         mapImage.src = imageData;
         if (imageData == null) mapImage.src = "data:image/jpeg;base64,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";
@@ -7785,38 +7820,7 @@ class VMapEditor extends VAbstractEditor {
             mapImage.height = window.outerHeight + 44;
             mapImage.width = mapImage.height / ratio;
             mapImage.style.left = (window.outerWidth - mapImage.width) / 2 + "px";
-            document.getElementById("drawing-canvas").style.display = "block";
-            this.aopTagGoogleMap.setOptions({
-                gestureHandling: "none"
-            });
-            var drawer = new SVG("drawing-canvas").size("100%", "100%");
-            console.log(drawer);
-            const getDrawObject = () => {
-                const option = {
-                    stroke: "#ff0099",
-                    "stroke-width": 2,
-                    "fill-opacity": .2
-                };
-                return drawer.polyline().fill("none").stroke({
-                    stroke: "#ff0099",
-                    width: 1
-                });
-            };
-            drawer.on("touchstart", event => {
-                const shape = getDrawObject();
-                console.log(this.shapes_index);
-                this.shapes[this.shapes_index] = shape;
-                shape.draw(event);
-            });
-            drawer.on("touchmove", event => {
-                if (this.shapes[this.shapes_index]) {
-                    this.shapes[this.shapes_index].draw("point", event);
-                }
-            });
-            drawer.on("touchend", event => {
-                this.shapes[this.shapes_index].draw("stop", event);
-                this.shapes_index++;
-            });
+            document.getElementById("drawing-canvas").style.display = "none";
         };
     }
     point2LatLng(x, y, map) {
