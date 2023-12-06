@@ -7748,7 +7748,7 @@ class VMapEditor extends VAbstractEditor {
             for (let shape of this.shapes) {
                 var poly = [];
                 for (let p of shape.array().value) {
-                    let g = point2LatLng(p[0], p[1], this.aopTagGoogleMap);
+                    let g = this.point2LatLng(p[0], p[1], this.aopTagGoogleMap);
                     poly.push([ setPrecision(g.lat(), precision), setPrecision(g.lng(), precision) ]);
                 }
                 var uniq = uniqBy(poly, JSON.stringify);
