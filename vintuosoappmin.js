@@ -7783,18 +7783,18 @@ class VMapEditor extends VAbstractEditor {
                         width: 1
                     });
                 };
-                drawer.on("mousedown", event => {
+                drawer.on("touchstart", event => {
                     const shape = getDrawObject();
                     console.log(this.shapes_index);
                     this.shapes[this.shapes_index] = shape;
                     shape.draw(event);
                 });
-                drawer.on("mousemove", event => {
+                drawer.on("touchmove", event => {
                     if (this.shapes[this.shapes_index]) {
                         this.shapes[this.shapes_index].draw("point", event);
                     }
                 });
-                drawer.on("mouseup", event => {
+                drawer.on("touchend", event => {
                     this.shapes[this.shapes_index].draw("stop", event);
                     this.shapes_index++;
                 });
