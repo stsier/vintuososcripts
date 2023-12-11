@@ -1,6 +1,7 @@
 {
-    "minor_version":"25",
+    "minor_version":"26",
     "app_in_review": false,
+	"access_token": "Zz6tYFksJUHS3UUlhQHLFmDyvh9zdhpZ",
     "expire" : 0,
 	"stats_nid" : 0,
     "debugTimeOut": 2000,
